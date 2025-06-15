@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>RCBC Online Banking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,400&display=swap");
+
+      body, html {
+        -webkit-font-smoothing: antialiased;
+        height: 100%;
+        background-color: #f9f9f9;
+      }
+
+      .login-container {
+        position: relative;
+        height: 100%;
+      }
+      .btn-block {
+        display:block;
+        width: 100%;
+      }
+      .btn-google {
+        color: #545454;
+        background-color: #ffffff;
+        box-shadow: 0 1px 2px 1px #ddd;
+      }
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .login-box {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 15px;
+        background-color: #fff;
+        box-shadow: 0px 5px 5px #ccc;
+        border-radius: 5px;
+        border-top: 1px solid #e9e9e9;
+      }
+
+      .login-header {
+        text-align: center;
+      }
+
+      .login-header img {
+        width: 75px;
+      }
+
+      .error-message {
+        display: none;
+        white-space: break-spaces;
+      }
+
+      .welcome {
+        z-index: 1000;
+        position: relative;
+        min-height: 100vh;
+        font-family: Poppins, "Helvetica Neue", Arial, sans-serif;
+      }
+      .welcome .intro-side {
+        position:relative;
+        //background-color: #4817a1;
+        /*
+        background: radial-gradient(
+          at 50% 100%,
+          rgba(109, 18, 228, 0.75),
+          rgb(15, 1, 94)
+        );*/
+        color: #fff;
+        padding-bottom: 30px;
+        vertical-align: middle;
+        min-height: 100%;
+      }
+      .welcome .ghosted-logo {
+        background: #3783D9;
+        background-size: contain;
+        background-repeat: no-repeat;
+        min-height: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 10px;
+        right: 10px;
+        opacity: .2;
+      }
+      .welcome .logo {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+    .welcome .form-side {
+      background-color: #3783D9;
+    }
+    .welcome .formwrap {
+      width: 100%;
+      max-width: 500px;
+    }
+    .welcome h1,
+    .welcome h2,
+    .welcome h3 {
+      font-weight: 600;
+    }
+
+
+  @media (min-width: 575px) {
+    .welcome .full-height {
+      min-height: 100vh;
+    }
+    .welcome .intro-side {
+      padding-bottom: 0;
+    }
+  }
+      .advisory-intro {
+            font-size: 14px;
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+
+         .advisory-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .advisory-item .icon {
+            margin-right: 15px;
+            font-size: 30px; /* Adjust size for the larger icons */
+            width: 40px; /* Fixed width for better alignment */
+            height: 40px; /* Fixed height */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--rcbc-purple); /* Example color */
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .advisory-item:nth-child(2) .icon { background-color: var(--rcbc-green); }
+        .advisory-item:nth-child(3) .icon { background-color: var(--rcbc-red); }
+        .advisory-item:nth-child(4) .icon { background-color: var(--rcbc-purple); }
+    </style>
+     
+     {%- auth0:head -%}
+    
+  </head>
+  <body>
+    <div class="welcome container-fluid">
+      <div class="row full-height align-items-stretch d-flex flex-fill d-flex justify-content-start">
+        <div class="col-sm-5 intro-side ">
+          <div class="ghosted-logo"></div>
+          <div class="p-sm-1 p-md-3 pt-3 pt-sm-3 pt-md-5 d-flex align-items-center justify-content-center h-100">
+            <div class="text-center">
+              <h1 class="title h1">Service Advisory 👋</h1>
+              <p class="advisory-intro">We're always looking for ways to improve, and we appreciate your feedback.</p>
+
+            <div class="advisory-item">
+                <span class="icon">🔒</span>
+                <p class="text">RCBC WILL NEVER ask you to provide your User IDs or passwords through e-mail or SMS.</p>
+            </div>
+
+            <div class="advisory-item">
+                <span class="icon">🔗</span>
+                <p class="text">Never click on links from suspicious e-mails and text messages. Don't be the next victim. 🙅‍♀️</p>
+            </div>
+
+            <div class="advisory-item">
+                <span class="icon">💸</span>
+                <p class="text">Monitor your accounts regularly and immediately report any discrepancies.</p>
+            </div>
+           
+            </div>
+          </div>
+          <div class="logo">
+            <a
+              href="https://www.rcbconlinebanking.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src="https://www.rcbconlinebanking.com/web/Areas/lg/img/marvel/RCBClogo.png"
+                style="max-width: 150px"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-7 form-side p-0">
+          <div class="welcomemodal p-4 h-100">
+            <div class="h-100 align-items-center justify-content-center d-flex pr-2">
+              <div class="formwrap">
+                <div class="_widget-auto-layout">
+                   {%- auth0:widget -%}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </body>
+</html>
